@@ -6,7 +6,7 @@ const ERROR = 'error';
 
 module.exports = {
   root: true,
-  extends: ['airbnb-base', 'prettier', 'plugin:import/recommended'],
+  extends: ['eslint:recommended', 'prettier', 'plugin:import/recommended'],
   plugins: ['prettier', 'import'],
   env: {
     browser: true,
@@ -38,9 +38,6 @@ module.exports = {
     'no-underscore-dangle': OFF,
     /** Allow both LF and CRLF line endings */
     'linebreak-style': OFF,
-    /** Allow not-camelcase properties */
-    camelcase: [ERROR, { properties: 'never', ignoreDestructuring: true }],
-
     // ! eslint-plugin-import rules
     /** Enforce file extensions on 'import' statements */
     'import/extensions': [ERROR, 'always', { ignorePackages: true }],
