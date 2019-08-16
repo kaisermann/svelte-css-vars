@@ -1,7 +1,6 @@
 # `svelte-css-vars`
 
-> Ever wanted to have reactive css variables in svelte?
-> What if I tell you there's a way?
+> Ever wanted to have reactive css variables in svelte? What if I told you there's a way?
 
 `svelte-css-vars` exposes a [svelte action](https://svelte.dev/docs#use_action) which receives an object of properties that should be treated as css custom properties. By defining this object inside a `$:{}` reactive block, `svelte-css-vars` can update those css properties on the fly whenever some of its values change.
 
