@@ -1,25 +1,25 @@
 <script>
-  import cssVars from '../../dist/index.es.js';
-
-  let error;
-
-  $: styleVars = {
-    color: error ? 'red' : 'blue',
-    fontSize: error ? '50px' : '20px',
-  };
+  import Circle from './Circle.svelte';
 </script>
 
-<style>
-  h1 {
-    font-size: var(--fontSize);
-    color: var(--color);
-  }
-</style>
+<Circle />
 
-<div use:cssVars={styleVars}>
-  <button on:click={() => (error = !error)}>toggle error</button>
+<br />
+<br />
+<br />
 
-  <header>
-    <h1>Error: {!!error}</h1>
-  </header>
-</div>
+<Circle
+  size={100}
+  bg="radial-gradient(circle, #051937, #004d7a, #008793, #00bf72, #a8eb12)" />
+
+<br />
+<br />
+<br />
+
+<Circle size={250} bg="gold" />
+
+<br />
+<br />
+<br />
+
+<Circle size="300x100" bg="green" />

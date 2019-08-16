@@ -1,21 +1,19 @@
-export default (node, initial_props) => {
-  let props_names = new Set(Object.keys(initial_props));
-
-  props_names.forEach(name => {
-    node.style.setProperty(`--${name}`, initial_props[name]);
+export default (node, props) => {
+  Object.entries(props).forEach(([key, value]) => {
+    node.style.setProperty(`--${key}`, value);
   });
 
   return {
     update(new_props) {
-      const new_props_names = new Set(Object.keys(new_props));
-
-      new_props_names.forEach(name => {
-        node.style.setProperty(`--${name}`, new_props[name]);
-        props_names.delete(name);
+      Object.entries(new_props).forEach(([key, value]) => {
+        node.style.setProperty(`--${key}`, value);
+        delete props[key];
       });
 
-      props_names.forEach(name => node.style.removeProperty(`--${name}`));
-      props_names = new_props_names;
+      Object.keys(props).forEach(name =>
+        node.style.removeProperty(`--${name}`),
+      );
+      props = new_props;
     },
   };
 };

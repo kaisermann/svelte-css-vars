@@ -9,7 +9,7 @@
 
 `import cssVars from 'svelte-css-vars';`
 
-After importing the module, juse define the reactive object of your custom properties:
+After importing the module, just define the reactive object of your custom properties:
 
 ```js
 let some_state_variable = true;
