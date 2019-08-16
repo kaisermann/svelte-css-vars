@@ -27,32 +27,57 @@ And then use the action, passing the object, on the desired element:
 </div>
 ```
 
-## [Example](https://svelte.dev/repl/7c7dcb35055348f89bf09fa5edde56fb)
+## [Example](https://svelte.dev/repl/1522fe3bdf904843a01101d9f900241d)
+
+**App.svelte**
+
+```html
+<script>
+  import Circle from './Circle.svelte';
+</script>
+
+<Circle size="80x80" bg="url(https://placekitten.com/80/80) center" />
+
+<Circle
+  size="{120}"
+  bg="radial-gradient(circle, #051937, #004d7a, #008793, #00bf72, #a8eb12) "
+/>
+
+<Circle
+  size="{180}"
+  bg="linear-gradient(45deg, #EE617D 25%, #3D6F8E 25%, #3D6F8E 50%, #EE617D 50%,
+  #EE617D 75%, #3D6F8E 75%, #3D6F8E 100%) center / 100% 20px"
+/>
+
+<Circle size="250/200" bg="url(https://placekitten.com/250/200) center" />
+```
+
+**Circle.svelte**
 
 ```html
 <script>
   import cssVars from 'svelte-css-vars';
 
-  let error;
+  export let bg = 'black';
+  export let size = '50x50';
 
+  $: [width, height = width] = size.toString().split(/[x|\/]/);
   $: styleVars = {
-    color: error ? 'red' : 'blue',
-    fontSize: error ? '50px' : '20px',
+    width: `${width}px`,
+    height: `${height}px`,
+    bg,
   };
 </script>
 
 <style>
-  h1 {
-    font-size: var(--fontSize);
-    color: var(--color);
+  div {
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+    background: var(--bg);
+    border-radius: 50%;
   }
 </style>
 
-<div use:cssVars={styleVars}>
-  <button on:click={() => (error = !error)}>toggle error</button>
-
-  <header>
-    <h1>Error: {!!error}</h1>
-  </header>
-</div>
+<div use:cssVars="{styleVars}" />
 ```
