@@ -21,6 +21,12 @@ $: styleVars = {
 And then use the action, passing the object, on the desired element:
 
 ```html
+<style>
+  div {
+    color: var(--titleColor);
+  }
+</style>
+
 <div use:cssVars="{styleVars}">
   <!-- anything here will have access to var(--titleColor) -->
 </div>
